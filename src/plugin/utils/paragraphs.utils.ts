@@ -9,7 +9,8 @@ export const extractParagraphs = (): string[] => {
   const toImg = (element: HTMLElement): string => {
     const img: HTMLImageElement = document.createElement('img');
     img.setAttribute('src', element.getAttribute('img-src') || '');
-    return img.outerHTML;
+
+    return `${img.outerHTML}<br/>`;
   };
 
   const toCode = (element: HTMLElement): string => {
@@ -23,7 +24,7 @@ export const extractParagraphs = (): string[] => {
     code.setAttribute('language', language);
     code.innerHTML = element.firstElementChild.innerHTML;
 
-    // We add a break line here becase \n seems to have no effect in the addRule of turndown when we parse block of code
+    // We add a line break here because \n seems to have no effect in the addRule of turndown when we parse block of code
     return `<br/>${code.outerHTML}`;
   };
 
