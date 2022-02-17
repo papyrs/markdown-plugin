@@ -8,7 +8,6 @@
   "action": {
     "default_title": "Papyrs posts to Markdown"
   },
-  "options_page": "options.html",
   "background": {
     "service_worker": "background.js"
   },
