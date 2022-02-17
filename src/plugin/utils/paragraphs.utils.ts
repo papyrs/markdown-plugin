@@ -39,7 +39,7 @@ export const extractParagraphs = (): string[] => {
       const element: HTMLElement = node as HTMLElement;
 
       if (element.nodeName.toLowerCase() === 'deckgo-lazy-img') {
-        return toCode(element);
+        return toImg(element);
       }
 
       if (element.nodeName.toLowerCase() === 'deckgo-highlight-code') {
