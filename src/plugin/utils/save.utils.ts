@@ -8,7 +8,7 @@ export const save = ({blob}: {blob: Blob}) => {
   return download({blob, filename});
 };
 
-const exportNativeFileSystem = async ({blob, filename}: {blob: Blob, filename: string}) => {
+const exportNativeFileSystem = async ({blob, filename}: {blob: Blob; filename: string}) => {
   const fileHandle: FileSystemFileHandle = await getNewFileHandle({filename});
 
   if (!fileHandle) {
@@ -34,7 +34,7 @@ const getNewFileHandle = ({filename}: {filename: string}): Promise<FileSystemFil
   return showSaveFilePicker(opts);
 };
 
-const writeFile = async ({fileHandle, blob}: {fileHandle: FileSystemFileHandle, blob: Blob}) => {
+const writeFile = async ({fileHandle, blob}: {fileHandle: FileSystemFileHandle; blob: Blob}) => {
   const writer: FileSystemWritableFileStream = await fileHandle.createWritable();
   await writer.write(blob);
   await writer.close();

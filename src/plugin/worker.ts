@@ -1,7 +1,7 @@
 import TurndownService from 'turndown';
+import {extractParagraphs} from './utils/paragraphs.utils';
 import {save} from './utils/save.utils';
 import {initTurndown} from './utils/turndown.utils';
-import {extractParagraphs} from './utils/paragraphs.utils';
 
 const toMarkdown = (paragraphs: string[]): string[] => {
   const turndownService: TurndownService = initTurndown();

@@ -21,11 +21,11 @@ export const extractParagraphs = (): string[] => {
     const pre: HTMLElement = document.createElement('pre');
     pre.innerHTML = element.firstElementChild.innerHTML;
 
-      const language: string = element.getAttribute('language') || 'javascript';
+    const language: string = element.getAttribute('language') || 'javascript';
 
-      const code: HTMLElement = document.createElement('code');
-      code.setAttribute('language', language);
-      code.appendChild(pre);
+    const code: HTMLElement = document.createElement('code');
+    code.setAttribute('language', language);
+    code.appendChild(pre);
 
     // We add a line break here because \n seems to have no effect in the addRule of turndown when we parse block of code
     return `<br/>${code.outerHTML}`;
