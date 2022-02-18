@@ -31,6 +31,10 @@ export const extractParagraphs = (): string[] => {
     return `<br/>${code.outerHTML}`;
   };
 
+  const toHr = (_element: HTMLElement): string => {
+    return `<hr/>`;
+  };
+
   const cleanZeroLengthWidth = (html: string) => html.replace(/\u200B/g, '');
 
   return Array.from(article.childNodes)
@@ -48,6 +52,10 @@ export const extractParagraphs = (): string[] => {
 
       if (element.nodeName.toLowerCase() === 'deckgo-highlight-code') {
         return toCode(element);
+      }
+
+      if (element.nodeName.toLowerCase() === 'deckgo-hr') {
+        return toHr(element);
       }
 
       return element.outerHTML;
