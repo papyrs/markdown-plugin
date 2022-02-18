@@ -2,7 +2,7 @@ import TurndownService, {Node as TurndownNode, Options} from 'turndown';
 import {unescapeCode} from './code.utils';
 
 export const initTurndown = (): TurndownService => {
-  const turndownService: TurndownService = new TurndownService();
+  const turndownService: TurndownService = new TurndownService({headingStyle: 'atx'});
 
   turndownService.addRule('code', {
     filter: ({nodeName}: HTMLElement, options: Options): boolean =>
