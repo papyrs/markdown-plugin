@@ -1,4 +1,5 @@
 import TurndownService, {Node as TurndownNode, Options} from 'turndown';
+import {unescapeCode} from './code.utils';
 
 export const initTurndown = (): TurndownService => {
   const turndownService: TurndownService = new TurndownService();
@@ -10,7 +11,7 @@ export const initTurndown = (): TurndownService => {
       const element: HTMLElement = node as HTMLElement;
 
       return `${'```'}${element.getAttribute('language') || ''}
-${element.textContent}
+${unescapeCode(element.textContent) || ''}
 ${'```'}`;
     }
   });
