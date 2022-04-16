@@ -1,5 +1,5 @@
 export const extractParagraphs = (): string[] => {
-  const article: HTMLElement | null = document.querySelector('deckgo-doc > article');
+  const article: HTMLElement | null = document.querySelector('deckgo-studio-doc > article');
 
   if (!article) {
     return [];
