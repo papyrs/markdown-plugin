@@ -3,7 +3,7 @@
   "description": "Export Papyrs blog posts to markdown",
   "version": "0.0.1",
   "manifest_version": 3,
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting"],
   "host_permissions": ["https://*.papy.rs/"],
   "action": {
     "default_title": "Papyrs to markdown"
