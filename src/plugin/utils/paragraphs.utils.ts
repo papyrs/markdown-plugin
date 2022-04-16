@@ -6,11 +6,12 @@ export const extractParagraphs = (): string[] => {
   }
 
   // Turndown addRule seems to not work with Web Components therefore we transform these to standard Node in advance
-  const toImg = (element: HTMLElement): string => {
+  const toImg = ({element, br}: {element: HTMLElement; br: boolean}): string => {
     const img: HTMLImageElement = document.createElement('img');
     img.setAttribute('src', element.getAttribute('img-src') || '');
+    img.setAttribute('alt', element.getAttribute('img-alt') || '');
 
-    return `${img.outerHTML}<br/>`;
+    return `${img.outerHTML}${br ? '<br/>' : ''}`;
   };
 
   const toCode = (element: HTMLElement): string => {
@@ -35,6 +36,21 @@ export const extractParagraphs = (): string[] => {
     return `<hr/>`;
   };
 
+  const foFigure = (element: HTMLElement): string => {
+    const figure: HTMLElement = element.cloneNode(true) as HTMLElement;
+
+    const deckGoImg: HTMLElement | null = figure.querySelector('deckgo-lazy-img');
+    if (deckGoImg) {
+      const div: HTMLDivElement = document.createElement('div');
+      div.innerHTML = toImg({element: deckGoImg, br: false});
+
+      deckGoImg.parentElement?.removeChild(deckGoImg);
+      figure.prepend(div.firstElementChild as HTMLElement);
+    }
+
+    return figure.outerHTML;
+  };
+
   const cleanZeroLengthWidth = (html: string) => html.replace(/\u200B/g, '');
 
   return Array.from(article.childNodes)
@@ -47,7 +63,7 @@ export const extractParagraphs = (): string[] => {
       const element: HTMLElement = node as HTMLElement;
 
       if (element.nodeName.toLowerCase() === 'deckgo-lazy-img') {
-        return toImg(element);
+        return toImg({element, br: true});
       }
 
       if (element.nodeName.toLowerCase() === 'deckgo-highlight-code') {
@@ -56,6 +72,10 @@ export const extractParagraphs = (): string[] => {
 
       if (element.nodeName.toLowerCase() === 'deckgo-hr') {
         return toHr(element);
+      }
+
+      if (element.nodeName.toLowerCase() === 'figure') {
+        return foFigure(element);
       }
 
       return element.outerHTML;
