@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const assets = './src/assets/';
-
 const copyAssets = (from, to) => {
   fs.mkdirSync(to);
   fs.readdirSync(from).forEach((element) => {
