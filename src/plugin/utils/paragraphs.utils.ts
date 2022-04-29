@@ -36,7 +36,7 @@ export const extractParagraphs = (): string[] => {
     return `<hr/>`;
   };
 
-  const foFigure = (element: HTMLElement): string => {
+  const toFigure = (element: HTMLElement): string => {
     const figure: HTMLElement = element.cloneNode(true) as HTMLElement;
 
     const deckGoImg: HTMLElement | null = figure.querySelector('deckgo-lazy-img');
@@ -75,7 +75,7 @@ export const extractParagraphs = (): string[] => {
       }
 
       if (element.nodeName.toLowerCase() === 'figure') {
-        return foFigure(element);
+        return toFigure(element);
       }
 
       return element.outerHTML;
