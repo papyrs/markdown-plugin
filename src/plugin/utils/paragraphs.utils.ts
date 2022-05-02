@@ -29,7 +29,7 @@ export const extractParagraphs = (): string[] => {
     code.appendChild(pre);
 
     // We add a line break here because \n seems to have no effect in the addRule of turndown when we parse block of code
-    return `<br/>${code.outerHTML}`;
+    return `${code.outerHTML}`;
   };
 
   const toHr = (_element: HTMLElement): string => {
@@ -63,7 +63,7 @@ export const extractParagraphs = (): string[] => {
       const element: HTMLElement = node as HTMLElement;
 
       if (element.nodeName.toLowerCase() === 'deckgo-lazy-img') {
-        return toImg({element, br: true});
+        return toImg({element, br: false});
       }
 
       if (element.nodeName.toLowerCase() === 'deckgo-highlight-code') {

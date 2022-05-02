@@ -6,7 +6,7 @@ import {initTurndown} from './utils/turndown.utils';
 const toMarkdown = (paragraphs: string[]): string[] => {
   const turndownService: TurndownService = initTurndown();
 
-  return paragraphs.map((paragraph: string) => turndownService.turndown(paragraph));
+  return paragraphs.map((paragraph: string) => `${turndownService.turndown(paragraph)}\n`);
 };
 
 (async () => {
