@@ -34,5 +34,11 @@ ${'```'}`;
     replacement: (content: string, node: TurndownNode, options: Options) => `*${content}*`
   });
 
+  turndownService.addRule('figcaption', {
+    filter: ({nodeName}: HTMLElement, options: Options): boolean =>
+        nodeName.toLowerCase() === 'figcaption',
+    replacement: (content: string, node: TurndownNode, options: Options) => `\n\n*${content}*`
+  });
+
   return turndownService;
 };
